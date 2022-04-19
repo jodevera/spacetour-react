@@ -1,0 +1,122 @@
+.techContainer {
+    display: flex;
+    margin-left: 10vw;
+    margin-top: 15vh;
+    align-items: center;
+}
+.techButtonsAndText {
+    display: flex;
+    flex: 1;
+}
+.techButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.techButton:hover {
+    border-color: white;
+}
+.techButton:active {
+    background-color: white;
+    color: black;
+}
+.techButton {
+    width: 80px;
+    height: 80px; 
+    border: solid 1px #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap; 
+    margin-bottom: 15px; 
+    margin-top: 15px;
+}
+.techText {
+    margin-left: 50px;
+    max-width: 500px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.techName {
+    margin-top: 20px;
+}
+.techDesc {
+    margin-top: 20px;
+
+}
+.techImage {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    margin-left: 50px;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .techContainer {
+        flex-direction: column;
+        margin-left: 0;
+        height: auto;
+    }
+    .techImage {
+        order: 1;
+        margin-left: 0px;
+        width: 100%
+    }
+    .techImgLandSrc {
+        width: 100%;
+        height: auto;
+        max-width:100%;
+        max-height:100%;
+    }
+    .techButtonsAndText {
+        order: 2;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+    .techText {
+        margin-left: 0;
+        margin-top: 25px;
+        justify-content: center;
+        text-align: center;
+        min-width: auto;
+        justify-content: flex-start;
+        min-height: auto;
+    }
+    .techButtons {
+        margin-top: 50px;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .techButton {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .techName {
+        font-size: 26px;
+    }
+    .techButtons {
+        margin-top: 25px;
+    }
+    .techButton {
+        height: 40px;
+        width: 40px;
+        font-size: 22px;
+    }
+    .techButtonsAndText {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+    .techDesc {
+        font-size: 12px;
+    }
+}

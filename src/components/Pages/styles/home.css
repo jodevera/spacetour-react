@@ -1,0 +1,125 @@
+.homeContainer {
+    display: flex;
+    align-content: center;
+}
+.landingText {
+    width: 450px;
+    height: 382px;
+    margin-top: 35vh;
+    margin-left: 10vw;
+    margin-right: 150px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.exploreContainer {
+    margin-top: 40vh;
+    margin-right: 5vw;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+.explore {
+    background-color: white;
+    border-radius: 50%;
+    color:black;
+    vertical-align: middle;
+    font-family: 'Bellefair';
+    transition: box-shadow 0.3s;
+    height: 274px;
+    width: 274px;
+    line-height: 274px;
+    font-size: 32px;
+    text-align: center;
+    position: absolute;
+    
+  }
+  
+  .explore:hover {
+    box-shadow: 0 0 0 60px #333;
+  }
+
+
+@media only screen and (max-width: 1024px) {
+    .homeContainer {
+        margin-top: 5vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .landingText {
+        margin-top: 100px;
+        width: 60%;
+        flex-flow: column nowrap;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .break-column {
+        flex-basis: 0%;
+        width: 0;
+    }
+    .homeText1 {
+        padding: 10px;
+    }
+    .homeText2 {
+        padding: 10px;
+    }
+    .homeText3 {
+        padding: 5px;
+    }
+    .exploreContainer {
+        margin-top: 100px;
+        
+    }
+    .explore {
+        height: 242px;
+        width: 242px;
+        line-height: 242px;
+        font-size: 32px;
+        margin-bottom: 50px;
+        margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .homeContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .landingText {
+        margin-top: 50px;
+        width: 80%;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        text-align: center;
+    }
+    .homeText1 {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .homeText2 {
+        font-size: 90px;
+        padding: 10px;
+    }
+    .homeText3 {
+        font-size: 14px;
+        padding: 5px;
+    }
+    .explore {
+        height: 150px;
+        width: 150px;
+        line-height: 150px;
+        font-size: 22px;
+        margin: 0;
+    }
+
+    .explore:hover {
+        box-shadow: 0 0 0 30px #333;
+    }
+
+}
