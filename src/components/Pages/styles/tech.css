@@ -84,6 +84,7 @@
     .techText {
         margin-left: 0;
         margin-top: 25px;
+        margin-bottom: 50px;
         justify-content: center;
         text-align: center;
         min-width: auto;
@@ -91,7 +92,7 @@
         min-height: auto;
     }
     .techButtons {
-        margin-top: 50px;
+        margin-top: 25px;
         flex-direction: row;
         justify-content: center;
     }

@@ -107,16 +107,17 @@
 
 @media only screen and (max-width: 480px) {
     .crewButtons {
+        margin-top: 0;
         order: 1;
     }
     .crewTitle {
-        margin-top: 25px;
+        margin-top: 15px;
         order: 2;
         font-size: 26px;
     }
     .crewName {
         order: 3;
-        font-size: 30px;
+        font-size: 25px;
     }
     .crewDesc {
         order: 4;
