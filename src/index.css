@@ -36,29 +36,30 @@ body {
   z-index: -99999;
 }
 .pageHome {
+  background-size: cover;
   background-image: url('./assets/destination/background-home-desktop.jpg');
 }
 .pageDest {
+  background-size: cover;
   background-image: url('./assets/destination/background-destination-desktop.jpg');
 }
 .pageCrew {
+  background-size: cover;
   background-image: url('./assets/destination/background-crew-desktop.jpg');
 }
 .pageTech {
+  background-size: cover;
   background-image: url('./assets/destination/background-technology-desktop.jpg');
 }
 
 @media only screen and (max-width: 1024px) {
   .pageHome {
-    background-size: cover;
     background-image: url('./assets/destination/background-home-tablet.jpg');
   }
   .pageDest {
-    background-size: cover;
     background-image: url('./assets/destination/background-destination-tablet.jpg');
   }
   .pageTech {
-    background-size: cover;
     background-image: url('./assets/destination/background-technology-tablet.jpg');
   }
 }

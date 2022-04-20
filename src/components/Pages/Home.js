@@ -3,7 +3,10 @@ import React, {} from "react";
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-
+    const handleRefresh = () => {
+        // by calling this method react re-renders the component
+        this.setState({});
+    };
     return (
         <>
             <div className='homeContainer'>
@@ -14,7 +17,7 @@ const Home = () => {
                     </div>
                     
                 </div>
-                <Link className = "exploreContainer" to = "/destination">
+                <Link onClick = { handleRefresh }className = "exploreContainer" to = "/destination">
                         <div className = "explore">EXPLORE</div>
                 </Link>
             </div>
