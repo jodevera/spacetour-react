@@ -129,6 +129,7 @@ const Navbar = () => {
                         <span className = "mobNavBullet">01</span>
                         <span className = "mobNavBullet">02</span>
                         <span className = "mobNavBullet">03</span>
+                        <span className = "mobNavBullet">04</span>
                     </div>
                     <ul className  = "mobNavLinks">
                         <li onClick = { () => clickNav() }className  = "mobNavText">
@@ -142,6 +143,9 @@ const Navbar = () => {
                         </li>
                         <li onClick = { () => clickNav()} className  = "mobNavText">
                             <Link to = "/technology" onClick = { handleRefresh }>TECHNOLOGY</Link>
+                        </li>
+                        <li onClick = { () => clickNav()} className  = "mobNavText">
+                            <Link to = "/discover" onClick = { handleRefresh }>DISCOVERY</Link>
                         </li>
                     </ul> 
                 </nav>

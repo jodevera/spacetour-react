@@ -17,9 +17,12 @@ const Home = () => {
                     </div>
                     
                 </div>
-                <Link onClick = { handleRefresh }className = "exploreContainer" to = "/destination">
-                        <div className = "explore">EXPLORE</div>
-                </Link>
+                <div className = "exploreContainer">
+                    <Link onClick = { handleRefresh } className = "exploreLink" to = "/destination">
+                            <div className = "explore">EXPLORE</div>
+                    </Link>
+                </div>
+                
             </div>
             
         </>
