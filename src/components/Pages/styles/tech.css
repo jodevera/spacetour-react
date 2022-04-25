@@ -47,6 +47,11 @@
     margin-top: 20px;
 
 }
+
+.techSelect {
+    background-color: white;
+    color: black;
+}
 .techImage {
     position: relative;
     overflow: hidden;

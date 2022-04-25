@@ -20,14 +20,44 @@ const Crew = () => {
     const [pos, setPos] = useState('COMMANDER');
     const [desc, setDesc] = useState('Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.');
 
+    const selected = "crewSelect";
+    const unselected = "crewUnselect";
+
+    const [crewDougStatus, setCrewDougStatus] = useState(selected);
+    const [crewMarkStatus, setCrewMarkStatus] = useState(unselected);
+    const [crewVictStatus, setCrewVictStatus] = useState(unselected);
+    const [crewAnouStatus, setCrewAnouStatus] = useState(unselected);
+    
     const setCrew= (crew) => {
         const crewTemp = crewObj.find(x => x.id === crew);
         setName(crewTemp.name);
         setImg(crewTemp.image);
         setPos(crewTemp.position);
         setDesc(crewTemp.desc);
+        if (crew === "douglas") {
+            setCrewDougStatus(selected);
+            setCrewMarkStatus(unselected);
+            setCrewVictStatus(unselected);
+            setCrewAnouStatus(unselected);
+        } else if (crew === "mark") {
+            setCrewDougStatus(unselected);
+            setCrewMarkStatus(selected);
+            setCrewVictStatus(unselected);
+            setCrewAnouStatus(unselected);
+        } else if (crew === "victor") {
+            setCrewDougStatus(unselected);
+            setCrewMarkStatus(unselected);
+            setCrewVictStatus(selected);
+            setCrewAnouStatus(unselected);
+        } else if (crew === "anousheh") {
+            setCrewDougStatus(unselected);
+            setCrewMarkStatus(unselected);
+            setCrewVictStatus(unselected);
+            setCrewAnouStatus(selected);
+        }
     };
     
+
     return (
         <>
             <div className = "subtitle heading5"><span className = "number">02</span>&nbsp;MEET YOUR CREW</div>
@@ -37,13 +67,13 @@ const Crew = () => {
                     <div className = 'crewName heading3'>{name}</div>
                     <div className = 'crewDesc bodytext'>{desc}</div>
                     <div className = "crewButtons">
-                        <div className = "circle" onClick = { () => setCrew("douglas") }>
+                        <div className = {"circle " + crewDougStatus} onClick = { () => setCrew("douglas") }>
                         </div>
-                        <div className = "circle" onClick = { () => setCrew("mark") }>
+                        <div className = {"circle " + crewMarkStatus} onClick = { () => setCrew("mark") }>
                         </div>
-                        <div className = "circle" onClick = { () => setCrew("victor") }>
+                        <div className = {"circle " + crewVictStatus} onClick = { () => setCrew("victor") }>
                         </div>
-                        <div className = "circle" onClick = { () => setCrew("anousheh") }>
+                        <div className = {"circle " + crewAnouStatus} onClick = { () => setCrew("anousheh") }>
                         </div>
                     </div>
                 </div>

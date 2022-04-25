@@ -51,6 +51,11 @@ body {
   background-size: cover;
   background-image: url('./assets/destination/background-technology-desktop.jpg');
 }
+.pageDisc {
+  background-size: cover;
+  background-image: url('./assets/destination/space-photo.jpeg');
+  background-attachment: fixed;
+}
 
 @media only screen and (max-width: 1024px) {
   .pageHome {
@@ -61,6 +66,9 @@ body {
   }
   .pageTech {
     background-image: url('./assets/destination/background-technology-tablet.jpg');
+  }
+  .pageDisc {
+    background-image: url('./assets/destination/space-photo.jpeg');
   }
 }
 
@@ -73,6 +81,9 @@ body {
   }
   .pageTech {
     background-image: url('./assets/destination/background-technology-mobile.jpg');
+  }
+  .pageDisc {
+    background-image: url('./assets/destination/space-photo.jpeg');
   }
 }
 
@@ -188,4 +199,7 @@ hr {
     /* Set the hr color */
     color: #333; /* old IE */
     background-color: #333; /* Modern Browsers */
+}
+input, label {
+    display: block;
 }

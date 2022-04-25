@@ -5,6 +5,7 @@
     display: inline;
     margin-right: 30px;
     position: relative;
+    cursor: pointer;
 }
 
 .destinationNavText:hover::after {
@@ -14,10 +15,11 @@
     height: 0;    
     left: 0;
     top: 30px; /*Change this to increase/decrease distance*/
-    border-bottom: 3px solid #333;  
+    border-bottom: 3px solid #777;  
 }
 
-.destinationNavText:active:after {
+
+.destSelect::after {
     content:'';
     position: absolute;
     width: 100%;

@@ -21,12 +21,32 @@ const Technology = () => {
     const [imgLand, setImgLand] = useState(vehicleImgLand);
     const [desc, setDesc] = useState("A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!");
 
+    const selected = "techSelect";
+    const unselected = "techUnselect";
+
+    const [techVehicleStatus, setTechVehicleStatus] = useState(selected);
+    const [techSpaceportStatus, setTechSpaceportStatus] = useState(unselected);
+    const [techCapsuleStatus, setTechCapsuleStatus] = useState(unselected);
+
     const setTech = (tech) => {
         const techTemp = techObj.find(x => x.id === tech);
         setTitle(techTemp.title);
         setImgPort(techTemp.portImage);
         setImgLand(techTemp.landImage);
         setDesc(techTemp.desc);
+        if (tech === "vehicle") {
+            setTechVehicleStatus(selected);
+            setTechSpaceportStatus(unselected);
+            setTechCapsuleStatus(unselected);
+        } else if (tech === "spaceport") {
+            setTechVehicleStatus(unselected);
+            setTechSpaceportStatus(selected);
+            setTechCapsuleStatus(unselected);
+        } else if (tech === "capsule") {
+            setTechVehicleStatus(unselected);
+            setTechSpaceportStatus(unselected);
+            setTechCapsuleStatus(selected);
+        }
     };
 
     const hideImg = {
@@ -77,9 +97,9 @@ const Technology = () => {
             <div className = "techContainer">
                 <div className = "techButtonsAndText">
                     <div className = "techButtons">
-                        <div className = "techButton heading4" onClick = { () => setTech("vehicle") }>1</div>
-                        <div className = "techButton heading4" onClick = { () => setTech("spaceport") }>2</div>
-                        <div className = "techButton heading4" onClick = { () => setTech("capsule") }>3</div>
+                        <div className = {"techButton heading4 " + techVehicleStatus} onClick = { () => setTech("vehicle") }>1</div>
+                        <div className = {"techButton heading4 " + techSpaceportStatus} onClick = { () => setTech("spaceport") }>2</div>
+                        <div className = {"techButton heading4 " + techCapsuleStatus} onClick = { () => setTech("capsule") }>3</div>
                     </div>
                     <div className  = "techText">
                         <div className = 'techSub bodytext'>THE TECHNOLOGY...</div>

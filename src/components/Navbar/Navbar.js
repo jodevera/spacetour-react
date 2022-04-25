@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../../assets/destination/logo.svg';
 import hamburger from '../../assets/destination/icon-hamburger.svg';
 import close from '../../assets/destination/icon-close.svg';
@@ -102,16 +102,19 @@ const Navbar = () => {
                 <nav className  = "navMain">
                     <ul className  = "navLinks">
                         <li className  = "navtext">
-                            <Link to = "/" onClick = { handleRefresh }><span className = "navLink"><span className = "bullet">00</span>&nbsp;HOME</span></Link>
+                            <NavLink to = "/" className={({ isActive }) => "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">00</span>&nbsp;HOME</NavLink>
                         </li>
                         <li className  = "navtext">
-                            <Link to = "/destination" onClick = { handleRefresh }><span className = "navLink"><span className = "bullet">01</span>&nbsp;DESTINATION</span></Link>
+                            <NavLink to = "/destination" className={({ isActive }) => "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">01</span>&nbsp;DESTINATION</NavLink>
                         </li>
                         <li className  = "navtext">
-                            <Link to = "/crew" onClick = { handleRefresh }><span className = "navLink"><span className = "bullet">02</span>&nbsp;CREW</span></Link>
+                            <NavLink to = "/crew" className={({ isActive }) => "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">02</span>&nbsp;CREW</NavLink>
                         </li>
                         <li className  = "navtext">
-                            <Link to = "/technology" onClick = { handleRefresh }><span className = "navLink"><span className = "bullet">03</span>&nbsp;TECHNOLOGY</span></Link>
+                            <NavLink to = "/technology" className={({ isActive }) => "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">03</span>&nbsp;TECHNOLOGY</NavLink>
+                        </li>
+                        <li className  = "navtext">
+                            <NavLink to = "/discover" className={({ isActive })=> "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">04</span>&nbsp;DISCOVER</NavLink>
                         </li>
                     </ul> 
                 </nav>
@@ -133,19 +136,19 @@ const Navbar = () => {
                     </div>
                     <ul className  = "mobNavLinks">
                         <li onClick = { () => clickNav() }className  = "mobNavText">
-                            <Link to = "/" onClick = { handleRefresh }>HOME</Link>
+                            <NavLink to = "/" onClick = { handleRefresh }>HOME</NavLink>
                         </li>
                         <li onClick = { () => clickNav()} className  = "mobNavText">
-                            <Link to = "/destination" onClick = { handleRefresh }>DESTINATION</Link>
+                            <NavLink to = "/destination" onClick = { handleRefresh }>DESTINATION</NavLink>
                         </li>
                         <li onClick = { () => clickNav()} className  = "mobNavText">
-                            <Link to = "/crew" onClick = { handleRefresh }>CREW</Link>
+                            <NavLink to = "/crew" onClick = { handleRefresh }>CREW</NavLink>
                         </li>
                         <li onClick = { () => clickNav()} className  = "mobNavText">
-                            <Link to = "/technology" onClick = { handleRefresh }>TECHNOLOGY</Link>
+                            <NavLink to = "/technology" onClick = { handleRefresh }>TECHNOLOGY</NavLink>
                         </li>
                         <li onClick = { () => clickNav()} className  = "mobNavText">
-                            <Link to = "/discover" onClick = { handleRefresh }>DISCOVERY</Link>
+                            <NavLink to = "/discover" onClick = { handleRefresh }>DISCOVER</NavLink>
                         </li>
                     </ul> 
                 </nav>

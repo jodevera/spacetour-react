@@ -5,9 +5,6 @@ import marsImg from '../../assets/destination/image-mars.png';
 import europaImg from '../../assets/destination/image-europa.png';
 import titanImg from '../../assets/destination/image-titan.png';
 
-
-
-
 const Destination = () => {
     const destObj = [
         { id: 'moon', title: 'MOON', image: moonImg, desc: 'See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.', avgTime: '384,400KM', eTT: '3 DAYS' },
@@ -22,6 +19,15 @@ const Destination = () => {
     const [avg, setAvg] = useState('384,400KM');
     const [ett, setEtt] = useState('3 DAYS');
 
+    const selected = "destSelect";
+    const unselected = "destUnselect";
+
+    const [destMoonStatus, setDestMoonStatus] = useState(selected);
+    const [destMarsStatus, setDestMarsStatus] = useState(unselected);
+    const [destEuroStatus, setDestEuroStatus] = useState(unselected);
+    const [destTitanStatus, setDestTitanStatus] = useState(unselected);
+
+
     const setDestination = (destination) => {
         const destTemp = destObj.find(x => x.id === destination);
         setTitle(destTemp.title);
@@ -29,6 +35,27 @@ const Destination = () => {
         setDesc(destTemp.desc);
         setAvg(destTemp.avgTime);
         setEtt(destTemp.eTT);
+        if (destination === "moon") {
+            setDestMoonStatus(selected);
+            setDestMarsStatus(unselected);
+            setDestEuroStatus(unselected);
+            setDestTitanStatus(unselected);
+        } else if (destination === "mars") {
+            setDestMoonStatus(unselected);
+            setDestMarsStatus(selected);
+            setDestEuroStatus(unselected);
+            setDestTitanStatus(unselected);
+        } else if (destination === "europa") {
+            setDestMoonStatus(unselected);
+            setDestMarsStatus(unselected);
+            setDestEuroStatus(selected);
+            setDestTitanStatus(unselected);
+        } else if (destination === "titan") {
+            setDestMoonStatus(unselected);
+            setDestMarsStatus(unselected);
+            setDestEuroStatus(unselected);
+            setDestTitanStatus(selected);
+        }
     };
 
     return (
@@ -41,10 +68,10 @@ const Destination = () => {
                 <div className  = "destinationText">
                     <div className = "destinationButtons">
                         <ul className = "destinationNavLinks">
-                            <li onClick = { () => setDestination("moon") } className = "destinationNavText">MOON</li>
-                            <li onClick = { () => setDestination("mars") } className = "destinationNavText">MARS</li>
-                            <li onClick = { () => setDestination("europa") } className = "destinationNavText">EUROPA</li>
-                            <li onClick = { () => setDestination("titan") } className = "destinationNavText">TITAN</li>
+                            <li onClick = { () => setDestination("moon") } className = {"destinationNavText " + destMoonStatus}>MOON</li>
+                            <li onClick = { () => setDestination("mars") } className = {"destinationNavText " + destMarsStatus}>MARS</li>
+                            <li onClick = { () => setDestination("europa") } className = {"destinationNavText " + destEuroStatus}>EUROPA</li>
+                            <li onClick = { () => setDestination("titan") } className = {"destinationNavText " + destTitanStatus}>TITAN</li>
                         </ul>
                     </div>
                     <div className = 'destinationName heading2'>{title}</div>
