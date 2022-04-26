@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import './styles/discover.css';
 import chevronImg from '../../assets/destination/down-chevron.svg';
 
+
+
 const Discover = () => {
+
     const showSearch = {
         transform: 'translateY(0%)',
         display: 'block'
@@ -16,9 +19,17 @@ const Discover = () => {
     const showChev = {
         display: 'block'
     }
+
+    const hideImg = {
+        display: 'none'
+    }
+
     const [searchStatus, setSearchStatus] = useState(hideSearch);
     const [upChevStatus, setUpChevStatus] = useState(showChev);
     const [downChevStatus, setDownChevStatus] = useState(hideChev);
+
+    const [patchStatus, setPatchStatus] = useState();
+
 
     const clickUpChevron = () => {
         setSearchStatus(showSearch);
@@ -31,23 +42,9 @@ const Discover = () => {
         setUpChevStatus(showChev);
         setDownChevStatus(hideChev);
     }
-
     const API_URL = "http://localhost:3500/launches";
-
     const [launches, setLaunches] = useState([])
-    const [launchFlightNumber, setLaunchFlightNumber] = useState();
-    const [rocketName, setRocketName] = useState();
-    const [rocketType, setRocketType] = useState();
-    const [launchDate, setLaunchDate] = useState();
-
-    const displayLaunches = (launch) => {
-        const launchTemp = launches.find(x => x.flight_number === launch);
-        setLaunchFlightNumber(launchTemp.flight_number);
-        setRocketName(launchTemp.rocket.rocket_name);
-        setRocketType(launchTemp.rocket.rocket_type);
-        setLaunchDate(launchTemp.launch_date_local);
-    };
-
+ 
     useEffect(() => {
         const fetchLaunches = async () => {
             try {
@@ -58,7 +55,6 @@ const Discover = () => {
                 console.log(err.stack)
             }
         }
-
         (async () => await fetchLaunches())();
     }, [])
 
@@ -100,29 +96,50 @@ const Discover = () => {
                         
                     </div>
                 </div>
-                <div className = "discoverResults">
-                    <div className = "launchText">
-                        <div className = "rocketInfo">
-                            <span className = "heading5 rocketName">Falcon 9&nbsp;-&nbsp;</span><span className = "heading5 rocketType">Echostar 105</span>
-                            <br/>
-                            <span className = "rocketDateLabel bodytext">Launched: 11th Octorber 2017 at 6:53pm from Kennedy Space Center Launch Complex 39A</span>
-                        </div>
-                        <div className = "flightNumberContainer">
-                            <span className = "heading5 flightNumber">#49</span>
-                            <br/>
-                            <span className = "rocketDateLabel bodytext">Flight Number</span>
-                        </div>
+                {launches.map((launch) => (
+                <div>
+                    {launch.payloads.map((payload) => (
+                        <div className = "discoverResults">
+                            <div className = "launchText">
+                                <div className = "launchIconContainer" style = {patchStatus}>
+                                    <img className = "launchIconSrc" src = {launch.links.mission_patch} alt = "patch"/>
+                                </div>
+                                <div className = "rocketInfo">
+                                    <span className = "heading5 rocketName">{launch.rocket.rocket_name}&nbsp;-&nbsp;</span><span className = "heading5 rocketType">{payload.payload_id}</span>
+                                    <br/>
+                                    <span className = "rocketDateLabel bodytext">Launched: {launch.launch_date_local}</span>
+                                </div>
+                                <div className = "flightNumberContainer">
+                                    <span className = "heading5 flightNumber">#{launch.flight_number}</span>
+                                    <br/>
+                                    <span className = "rocketDateLabel bodytext">Flight Number</span>
+                                </div>
 
-                    </div>
-                    <div className = "launchButtonContainer">
-                        <button className = "launchButton bodytext">Reddit Campaign</button>
-                        <button className = "launchButton bodytext">Reddit Launch</button>
-                        <button className = "launchButton bodytext">Reddit Media</button>
-                        <button className = "launchButton bodytext">Press Kit</button>
-                        <button className = "launchButton bodytext">Article</button>
-                        <button className = "launchButton bodytext">Watch Video</button>
-                    </div>
+                            </div>
+                            <div className = "launchButtonContainer">
+                                <a href =  {launch.links.reddit_campaign} target = "_blank" rel = "noreferrer">
+                                    <button className = "launchButton bodytext">Reddit Campaign</button>
+                                </a>
+                                <a href =  {launch.links.reddit_launch} target = "_blank" rel = "noreferrer">
+                                    <button className = "launchButton bodytext">Reddit Launch</button>
+                                </a>
+                                <a href =  {launch.links.reddit_media} target = "_blank" rel = "noreferrer">
+                                    <button className = "launchButton bodytext">Reddit Media</button>
+                                </a>
+                                <a href =  {launch.links.presskit} target = "_blank" rel = "noreferrer">
+                                    <button className = "launchButton bodytext">Press Kit</button>
+                                </a>
+                                <a href =  {launch.links.article_link} target = "_blank" rel = "noreferrer">
+                                    <button className = "launchButton bodytext">Article</button>
+                                </a>
+                                <a href =  {launch.links.video_link} target = "_blank" rel = "noreferrer">
+                                    <button className = "launchButton bodytext">Watch Video</button>
+                                </a>  
+                            </div>
+                        </div>
+                    ))}
                 </div>
+                ))}
             </div>
         </>
     );

@@ -54,8 +54,10 @@
     flex: 1;
 }
 .discoverTextBox {
-    display:table-cell; width:100%;
+    display:table-cell;
+    width:100%;
     border-radius: 4px;
+    padding: 3px;
 }
 .discoveryButtonContainer {
     display: flex;
@@ -77,6 +79,7 @@
     margin-left:50px;
     margin-right: 50px;
     padding: 20px;
+    margin-bottom: 20px;
 }
 .launchText {
     display: flex;
@@ -104,6 +107,12 @@
     border: 1px solid #777;
     border-radius: 8px;
 }
+.launchIconSrc {
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 20px;
+}
+.launchIconContainer {}
 .discoverTextBox {
     background: transparent;
     border: 1px solid white;
