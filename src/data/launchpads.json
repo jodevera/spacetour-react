@@ -1,4 +1,8 @@
-[
+{"launchpads" :[
+  {
+    "id": "null",
+    "full_name": "--SELECT--"
+  },
   {
     "id": "kwajalein_atoll",
     "full_name": "Kwajalein Atoll",
@@ -103,4 +107,4 @@
     "vehicles_launched": "falcon 9",
     "details": "SpaceX new launch site currently under construction to help keep up with the Falcon 9 and Heavy manifests. Expected to be completed in late 2018. Initially will be limited to 12 flights per year, and only GTO launches."
   }
-]
+]}
