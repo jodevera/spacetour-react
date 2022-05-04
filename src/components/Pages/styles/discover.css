@@ -1,139 +1,137 @@
 .discoverContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 70vw;
-    height: 87vh;
-    margin: auto;
-    overflow-y: hidden;
-
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 70vw;
+  height: 87vh;
+  margin: auto;
+  overflow-y: hidden;
 }
 .discoverText {
-    margin-top: 25vh;
-    text-align: center;
+  margin-top: 25vh;
+  text-align: center;
 }
 .discoverIcon {
-    display: flex;
-    justify-content: center;
-    margin-top: 15vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 15vh;
 }
 .discoverChevUpSrc {
-    width: 50px;
-    height: 50px;
-    filter: brightness(0) invert(1);
-    transform: rotate(180deg);
+  width: 50px;
+  height: 50px;
+  filter: brightness(0) invert(1);
+  transform: rotate(180deg);
 }
 .discoverChevDownSrc {
-    width: 50px;
-    height: 50px;
-    filter: brightness(0) invert(1);
-    cursor: pointer;
+  width: 50px;
+  height: 50px;
+  filter: brightness(0) invert(1);
+  cursor: pointer;
 }
 .discoverSearch {
-    background: rgba(255, 255, 255, .05);    /*  5% opaque white */
-    backdrop-filter: blur(50px);
-    width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  background: rgba(255, 255, 255, 0.05); /*  5% opaque white */
+  backdrop-filter: blur(50px);
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .discoverInputContainer {
-    flex-wrap: wrap;
-    background: rgba(255, 255, 255, .05);    /*  5% opaque white */
-    backdrop-filter: blur(50px);
-    height: 60px;
-    padding: 20px;
-    display: flex;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 20px;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.05); /*  5% opaque white */
+  backdrop-filter: blur(50px);
+  height: 60px;
+  padding: 20px;
+  display: flex;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 20px;
 }
 .discoverLabel {
-    color: white !important;
+  color: white !important;
 }
 .discoverSearchInput {
-    margin-right: 25px;
-    flex: 1;
+  margin-right: 25px;
+  flex: 1;
 }
 .discoverTextBox {
-    display:table-cell;
-    width:100%;
-    border-radius: 4px;
-    padding: 3px;
+  display: table-cell;
+  width: 100%;
+  border-radius: 4px;
+  padding: 3px;
 }
 .discoveryButtonContainer {
-    display: flex;
-    align-items: flex-end;
-    align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  align-self: flex-end;
 }
 .discoverApplyButton {
-    color: white;
-    background-color: rgba(255, 255, 255, .1); ;
-    margin-right: 20px;
-    border: 1px solid #777;
-    border-radius: 8px;
-    width: 120px;
-    
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-right: 20px;
+  border: 1px solid #777;
+  border-radius: 8px;
+  width: 120px;
 }
 .discoverResults {
-    background: rgba(255, 255, 255, .05);    /*  5% opaque white */
-    backdrop-filter: blur(50px);
-    margin-left:50px;
-    margin-right: 50px;
-    padding: 20px;
-    margin-top: 20px;
+  background: rgba(255, 255, 255, 0.05); /*  5% opaque white */
+  backdrop-filter: blur(50px);
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 20px;
+  margin-top: 20px;
 }
 .launchText {
-    display: flex;
-
+  display: flex;
 }
-.rocketName, .rocketType, .flightNumber {
-    color: white;
+.rocketName,
+.rocketType,
+.flightNumber {
+  color: white;
 }
 .rocketInfo {
-    flex: 7;
+  flex: 7;
 }
 .flightNumberContainer {
-    text-align: center;
-    flex: 1;
+  text-align: center;
+  flex: 1;
 }
 .launchButtonContainer {
-    flex-wrap: wrap;
-    margin-top: 15px;
-    display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  display: flex;
 }
 .launchButton {
-    color: white;
-    background-color: rgba(255, 255, 255, .1); ;
-    margin-right: 20px;
-    border: 1px solid #777;
-    border-radius: 8px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-right: 20px;
+  border: 1px solid #777;
+  border-radius: 8px;
 }
 .launchIconSrc {
-    max-width: 50px;
-    max-height: 50px;
-    margin-right: 20px;
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 20px;
 }
 .discoverTextBox {
-    background: transparent;
-    border: 1px solid #D0D6F9;
-    border-radius: 4px;
-    color: white;
-    font-family: 'Barlow Condensed';
-   
-    letter-spacing: 2.35px;
+  background: transparent;
+  border: 1px solid #d0d6f9;
+  border-radius: 4px;
+  color: white;
+  font-family: "Barlow Condensed";
+
+  letter-spacing: 2.35px;
 }
 .backToTopContainer {
-
-    text-align: center;
-    margin-top: 20px;
-    cursor: pointer;
-    text-decoration: underline;
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 .noOfMissionsContainer {
-    text-align: center;
+  text-align: center;
 }
 @media only screen and (max-width: 480px) {
-    .discoverText {
-        font-size: 32px;
-    }
+  .discoverText {
+    font-size: 32px;
+  }
 }

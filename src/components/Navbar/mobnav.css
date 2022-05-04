@@ -1,56 +1,56 @@
 .mobNavText {
-    font-family: 'Barlow Condensed';
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    display: block;
-    padding-left: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+  font-family: "Barlow Condensed";
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  display: block;
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
-.mobNavLinks{
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: left;
-    flex: 7;
-    margin-right: 50px;
+.mobNavLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  flex: 7;
+  margin-right: 50px;
 }
 .mobNavContainer {
-    padding-top: 100px;
-    display: none;
-    height: 100%;
-    width: 77%;
-    background: rgba(255, 255, 255, .05);    /*  5% opaque white */
-    backdrop-filter: blur(50px);
-    z-index: 9999;
-    position: absolute;
-    transition: translate 0.3s;
-    transform: translateY(0%);
-    transform: translateX(100%);
-    left: 100px;
-    top: -5px;
+  padding-top: 100px;
+  display: none;
+  height: 100%;
+  width: 77%;
+  background: rgba(255, 255, 255, 0.05); /*  5% opaque white */
+  backdrop-filter: blur(50px);
+  z-index: 9999;
+  position: absolute;
+  transition: translate 0.3s;
+  transform: translateY(0%);
+  transform: translateX(100%);
+  left: 100px;
+  top: -5px;
 }
 
 .mobNavBullets {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: left;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  flex: 1;
 }
 
 .mobNavBullet {
-    font-family: 'Barlow Condensed';
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    display: block;
-    padding-left: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-weight: 700;
+  font-family: "Barlow Condensed";
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  display: block;
+  padding-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: 700;
 }
 
 .mobNavMain {
-    display: flex;
+  display: flex;
 }

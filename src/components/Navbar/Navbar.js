@@ -1,161 +1,217 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from 'react-router-dom';
-import logo from '../../assets/destination/logo.svg';
-import hamburger from '../../assets/destination/icon-hamburger.svg';
-import close from '../../assets/destination/icon-close.svg';
-
+import { NavLink } from "react-router-dom";
+import logo from "../../assets/destination/logo.svg";
+import hamburger from "../../assets/destination/icon-hamburger.svg";
+import close from "../../assets/destination/icon-close.svg";
 
 const Navbar = () => {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+  });
 
-    const [windowSize, setWindowSize] = useState({
-        width: undefined,
-    });
-
-    useEffect(() => {
-        // Handler to call on window resize
-        function handleResize() {
-          // Set window width to state
-            setWindowSize({
-                width: window.innerWidth,
-            });
-        };
-        window.addEventListener("resize", handleResize);
-        handleResize();
-
-        return () => window.removeEventListener("resize", handleResize);
-        
-    },[]);
-
-    useEffect(() => {
-        
-        if (windowSize.width <= '480') {
-            setHbStatus(showIcon);
-            changeWindow();
-            setCloseStatus(hideIcon);
-
-        }
-        else if (windowSize.width > '480') {
-            changeWindow();
-            setHbStatus(hideIcon);
-            setCloseStatus(hideIcon);
-
-        }
-        
-    },[windowSize]);
-
-    
-    const showNav = {
-        transform: 'translateX(0%)',
-        display: 'block'
-    };
-
-    const hideNav = {
-        transform: 'translateX(100%)',
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width to state
+      setWindowSize({
+        width: window.innerWidth,
+      });
     }
+    window.addEventListener("resize", handleResize);
+    handleResize();
 
-    const showIcon = {
-        display: 'inline-block'
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (windowSize.width <= "480") {
+      setHbStatus(showIcon);
+      changeWindow();
+      setCloseStatus(hideIcon);
+    } else if (windowSize.width > "480") {
+      changeWindow();
+      setHbStatus(hideIcon);
+      setCloseStatus(hideIcon);
     }
+  }, [windowSize]);
 
-    const hideIcon = {
-        display: 'none'
-    }
+  const showNav = {
+    transform: "translateX(0%)",
+    display: "block",
+  };
 
-    const [navStatus, setNavStatus] = useState(hideNav);
+  const hideNav = {
+    transform: "translateX(100%)",
+  };
 
-    const [hbStatus, setHbStatus] = useState(showNav);
+  const showIcon = {
+    display: "inline-block",
+  };
 
-    const [closeStatus, setCloseStatus] = useState();
+  const hideIcon = {
+    display: "none",
+  };
 
-    const clickHB = () => {
-        setCloseStatus(showIcon);
-        setHbStatus(hideIcon);
-        setNavStatus(showNav);
-    }
+  const [navStatus, setNavStatus] = useState(hideNav);
 
-    const clickClose = () => {
-        setCloseStatus(hideIcon);
-        setHbStatus(showIcon);
-        setNavStatus(hideNav);
-    }
+  const [hbStatus, setHbStatus] = useState(showNav);
 
-    const clickNav = () => {
-        setNavStatus(hideNav);
-        setCloseStatus(hideIcon);
-        setHbStatus(showIcon);
-    }
+  const [closeStatus, setCloseStatus] = useState();
 
-    const changeWindow = () => {
-        setNavStatus(hideNav);
-    }
+  const clickHB = () => {
+    setCloseStatus(showIcon);
+    setHbStatus(hideIcon);
+    setNavStatus(showNav);
+  };
 
-    const handleRefresh = () => {
-        // by calling this method react re-renders the component
-        this.setState({});
-    };
-    return (
-        <>
-            <div className = "header">
-                <div className = "logo"><img src = {logo} alt = "logo"/></div>
-                <div className = 'horizontal-line-header'><hr /></div>
-                <div className = 'horizontal-line-overlap'><hr /></div>
-                <nav className  = "navMain">
-                    <ul className  = "navLinks">
-                        <li className  = "navtext">
-                            <NavLink to = "/" className={({ isActive }) => "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">00</span>&nbsp;HOME</NavLink>
-                        </li>
-                        <li className  = "navtext">
-                            <NavLink to = "/destination" className={({ isActive }) => "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">01</span>&nbsp;DESTINATION</NavLink>
-                        </li>
-                        <li className  = "navtext">
-                            <NavLink to = "/crew" className={({ isActive }) => "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">02</span>&nbsp;CREW</NavLink>
-                        </li>
-                        <li className  = "navtext">
-                            <NavLink to = "/technology" className={({ isActive }) => "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">03</span>&nbsp;TECHNOLOGY</NavLink>
-                        </li>
-                        <li className  = "navtext">
-                            <NavLink to = "/discover" className={({ isActive })=> "navLink" + (isActive ? " selected" : " unselected")} onClick = { handleRefresh }><span className = "bullet">04</span>&nbsp;DISCOVER</NavLink>
-                        </li>
-                    </ul> 
-                </nav>
-                <div style = {hbStatus} className = "hamburger">
-                   <img onClick = { () => clickHB() } className = "icon-img" src = {hamburger} alt = "hamburger"/>
-                </div>
-                <div style = {closeStatus} className = "exit">
-                   <img onClick = { () => clickClose() } className = "icon-img" src = {close} alt = "close"/>
-                </div>
-            </div>
-            <div style = {navStatus} className = "mobNavContainer">
-                <nav className  = "mobNavMain">
-                    <div className = "mobNavBullets">
-                        <span className = "mobNavBullet">00</span>
-                        <span className = "mobNavBullet">01</span>
-                        <span className = "mobNavBullet">02</span>
-                        <span className = "mobNavBullet">03</span>
-                        <span className = "mobNavBullet">04</span>
-                    </div>
-                    <ul className  = "mobNavLinks">
-                        <li onClick = { () => clickNav() }className  = "mobNavText">
-                            <NavLink to = "/" onClick = { handleRefresh }>HOME</NavLink>
-                        </li>
-                        <li onClick = { () => clickNav()} className  = "mobNavText">
-                            <NavLink to = "/destination" onClick = { handleRefresh }>DESTINATION</NavLink>
-                        </li>
-                        <li onClick = { () => clickNav()} className  = "mobNavText">
-                            <NavLink to = "/crew" onClick = { handleRefresh }>CREW</NavLink>
-                        </li>
-                        <li onClick = { () => clickNav()} className  = "mobNavText">
-                            <NavLink to = "/technology" onClick = { handleRefresh }>TECHNOLOGY</NavLink>
-                        </li>
-                        <li onClick = { () => clickNav()} className  = "mobNavText">
-                            <NavLink to = "/discover" onClick = { handleRefresh }>DISCOVER</NavLink>
-                        </li>
-                    </ul> 
-                </nav>
-            </div>
-        </>
-        
-    );
+  const clickClose = () => {
+    setCloseStatus(hideIcon);
+    setHbStatus(showIcon);
+    setNavStatus(hideNav);
+  };
+
+  const clickNav = () => {
+    setNavStatus(hideNav);
+    setCloseStatus(hideIcon);
+    setHbStatus(showIcon);
+  };
+
+  const changeWindow = () => {
+    setNavStatus(hideNav);
+  };
+
+  const handleRefresh = () => {
+    // by calling this method react re-renders the component
+    this.setState({});
+  };
+  return (
+    <>
+      <div className="header">
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
+        <div className="horizontal-line-header">
+          <hr />
+        </div>
+        <div className="horizontal-line-overlap">
+          <hr />
+        </div>
+        <nav className="navMain">
+          <ul className="navLinks">
+            <li className="navtext">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  "navLink" + (isActive ? " selected" : " unselected")
+                }
+                onClick={handleRefresh}
+              >
+                <span className="bullet">00</span>&nbsp;HOME
+              </NavLink>
+            </li>
+            <li className="navtext">
+              <NavLink
+                to="/destination"
+                className={({ isActive }) =>
+                  "navLink" + (isActive ? " selected" : " unselected")
+                }
+                onClick={handleRefresh}
+              >
+                <span className="bullet">01</span>&nbsp;DESTINATION
+              </NavLink>
+            </li>
+            <li className="navtext">
+              <NavLink
+                to="/crew"
+                className={({ isActive }) =>
+                  "navLink" + (isActive ? " selected" : " unselected")
+                }
+                onClick={handleRefresh}
+              >
+                <span className="bullet">02</span>&nbsp;CREW
+              </NavLink>
+            </li>
+            <li className="navtext">
+              <NavLink
+                to="/technology"
+                className={({ isActive }) =>
+                  "navLink" + (isActive ? " selected" : " unselected")
+                }
+                onClick={handleRefresh}
+              >
+                <span className="bullet">03</span>&nbsp;TECHNOLOGY
+              </NavLink>
+            </li>
+            <li className="navtext">
+              <NavLink
+                to="/discover"
+                className={({ isActive }) =>
+                  "navLink" + (isActive ? " selected" : " unselected")
+                }
+                onClick={handleRefresh}
+              >
+                <span className="bullet">04</span>&nbsp;DISCOVER
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+        <div style={hbStatus} className="hamburger">
+          <img
+            onClick={() => clickHB()}
+            className="icon-img"
+            src={hamburger}
+            alt="hamburger"
+          />
+        </div>
+        <div style={closeStatus} className="exit">
+          <img
+            onClick={() => clickClose()}
+            className="icon-img"
+            src={close}
+            alt="close"
+          />
+        </div>
+      </div>
+      <div style={navStatus} className="mobNavContainer">
+        <nav className="mobNavMain">
+          <div className="mobNavBullets">
+            <span className="mobNavBullet">00</span>
+            <span className="mobNavBullet">01</span>
+            <span className="mobNavBullet">02</span>
+            <span className="mobNavBullet">03</span>
+            <span className="mobNavBullet">04</span>
+          </div>
+          <ul className="mobNavLinks">
+            <li onClick={() => clickNav()} className="mobNavText">
+              <NavLink to="/" onClick={handleRefresh}>
+                HOME
+              </NavLink>
+            </li>
+            <li onClick={() => clickNav()} className="mobNavText">
+              <NavLink to="/destination" onClick={handleRefresh}>
+                DESTINATION
+              </NavLink>
+            </li>
+            <li onClick={() => clickNav()} className="mobNavText">
+              <NavLink to="/crew" onClick={handleRefresh}>
+                CREW
+              </NavLink>
+            </li>
+            <li onClick={() => clickNav()} className="mobNavText">
+              <NavLink to="/technology" onClick={handleRefresh}>
+                TECHNOLOGY
+              </NavLink>
+            </li>
+            <li onClick={() => clickNav()} className="mobNavText">
+              <NavLink to="/discover" onClick={handleRefresh}>
+                DISCOVER
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </>
+  );
 };
 
 export default Navbar;
