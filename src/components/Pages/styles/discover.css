@@ -71,6 +71,10 @@
   border: 1px solid #777;
   border-radius: 8px;
   width: 120px;
+  cursor: pointer;
+}
+.discoverApplyButton:hover {
+  background-color: #777;
 }
 .discoverResults {
   background: rgba(255, 255, 255, 0.05); /*  5% opaque white */
@@ -106,6 +110,10 @@
   margin-right: 20px;
   border: 1px solid #777;
   border-radius: 8px;
+  cursor: pointer;
+}
+.launchButton:hover {
+  background-color: #777;
 }
 .launchIconSrc {
   max-width: 50px;
@@ -129,6 +137,9 @@
 }
 .noOfMissionsContainer {
   text-align: center;
+}
+.launchSuccess {
+  color: red;
 }
 @media only screen and (max-width: 480px) {
   .discoverText {

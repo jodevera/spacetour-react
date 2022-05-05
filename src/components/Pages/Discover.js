@@ -177,10 +177,10 @@ const Discover = () => {
     }
   };
 
-  console.log("keyword: " + keyword);
-  console.log("launchpad: " + lpFilter);
-  console.log("min year: " + minYearFilter);
-  console.log("max year: " + maxYearFilter);
+  // console.log("keyword: " + keyword);
+  // console.log("launchpad: " + lpFilter);
+  // console.log("min year: " + minYearFilter);
+  // console.log("max year: " + maxYearFilter);
 
   //APPLY SEARCH ON CLICK
 
@@ -190,8 +190,7 @@ const Discover = () => {
     const lowercasedLpFilter = lpFilter.toString().toLowerCase();
 
     const tempFilteredLaunches = launches.filter((launch) => {
-
-    //convert dates to year
+      //convert dates to year
       var rawDate = new Date(launch.launch_date_local);
       var rawYear = rawDate.getFullYear();
 
@@ -340,6 +339,94 @@ const Discover = () => {
     return convertedDate;
   };
 
+  const isSuccessful = (bool) => {
+    if (bool === false) {
+      return <span className="heading5 launchSuccess">&nbsp;Failed Mission</span>;
+    }
+  };
+
+  const hasPatch = (x) => {
+    const urlExists = (x) => {
+      var http = new XMLHttpRequest();
+      http.open("HEAD", x, false);
+      http.send();
+      if (http.status !== 404) return true;
+      else return false;
+    };
+    if (urlExists(x) === true)
+      return (
+        <div className="launchIconContainer">
+          <img className="launchIconSrc" src={x} alt="patch" />
+        </div>
+      );
+  };
+  const hasRedditCampaign = (x) => {
+    // console.log("campaign: "+x.links.hasOwnProperty('reddit_campaign'));
+    if (x.links.hasOwnProperty('reddit_campaign') === true && x.links.reddit_campaign !== null) {
+      return (
+        <a href={x.links.reddit_campaign} target="_blank" rel="noreferrer">
+          <button className="launchButton bodytext">Reddit Campaign</button>
+        </a>
+      );
+      
+    }
+  };
+  const hasRedditLaunch = (x) => {
+    // console.log("launch: "+x.links.hasOwnProperty('reddit_launch'));
+    if (x.links.hasOwnProperty('reddit_launch') === true && x.links.reddit_launch !== null) {
+      return (
+        <a href={x.links.reddit_launch} target="_blank" rel="noreferrer">
+          <button className="launchButton bodytext">Reddit Launch</button>
+        </a>
+      );
+      
+    }
+  };
+  const hasRedditMedia = (x) => {
+    // console.log("launch: "+x.links.hasOwnProperty('reddit_media'));
+    if (x.links.hasOwnProperty('reddit_media') === true && x.links.reddit_media !== null) {
+      return (
+        <a href={x.links.reddit_media} target="_blank" rel="noreferrer">
+          <button className="launchButton bodytext">Reddit Media</button>
+        </a>
+      );
+      
+    }
+  };
+  const hasPresskit = (x) => {
+    // console.log("launch: "+x.links.hasOwnProperty('presskit'));
+    if (x.links.hasOwnProperty('presskit') === true && x.links.presskit !== null) {
+      return (
+        <a href={x.links.presskit} target="_blank" rel="noreferrer">
+          <button className="launchButton bodytext">Presskit</button>
+        </a>
+      );
+      
+    }
+  };
+  const hasArticleLink = (x) => {
+    // console.log("launch: "+x.links.hasOwnProperty('article_link'));
+    if (x.links.hasOwnProperty('article_link') === true && x.links.article_link !== null) {
+      return (
+        <a href={x.links.article_link} target="_blank" rel="noreferrer">
+          <button className="launchButton bodytext">Article</button>
+        </a>
+      );
+      
+    }
+  };
+  const hasVideoLink = (x) => {
+    // console.log("launch: "+x.links.hasOwnProperty('video_link'));
+    if (x.links.hasOwnProperty('video_link') === true && x.links.video_link !== null) {
+      return (
+        <a href={x.links.video_link} target="_blank" rel="noreferrer">
+          <button className="launchButton bodytext">Video</button>
+        </a>
+      );
+      
+    }
+  };
+
   return (
     <>
       <div className="subtitle heading5">
@@ -443,13 +530,7 @@ const Discover = () => {
                 key={"launch" + x + "payload" + y}
               >
                 <div className="launchText">
-                  <div className="launchIconContainer">
-                    <img
-                      className="launchIconSrc"
-                      src={launch.links.mission_patch}
-                      alt="patch"
-                    />
-                  </div>
+                  {hasPatch(launch.links.mission_patch)}
                   <div className="rocketInfo">
                     <span className="heading5 rocketName">
                       {launch.rocket.rocket_name}&nbsp;-&nbsp;
@@ -457,6 +538,7 @@ const Discover = () => {
                     <span className="heading5 rocketType">
                       {payload.payload_id}
                     </span>
+                    {isSuccessful(launch.launch_success)}
                     <br />
                     <span className="rocketDateLabel bodytext">
                       Launched <b>{convertDate(launch.launch_date_local)}</b>{" "}
@@ -482,56 +564,12 @@ const Discover = () => {
                   </div>
                 </div>
                 <div className="launchButtonContainer">
-                  <a
-                    href={launch.links.reddit_campaign}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <button className="launchButton bodytext">
-                      Reddit Campaign
-                    </button>
-                  </a>
-                  <a
-                    href={launch.links.reddit_launch}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <button className="launchButton bodytext">
-                      Reddit Launch
-                    </button>
-                  </a>
-                  <a
-                    href={launch.links.reddit_media}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <button className="launchButton bodytext">
-                      Reddit Media
-                    </button>
-                  </a>
-                  <a
-                    href={launch.links.presskit}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <button className="launchButton bodytext">Press Kit</button>
-                  </a>
-                  <a
-                    href={launch.links.article_link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <button className="launchButton bodytext">Article</button>
-                  </a>
-                  <a
-                    href={launch.links.video_link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <button className="launchButton bodytext">
-                      Watch Video
-                    </button>
-                  </a>
+                  {hasRedditCampaign(launch)}
+                  {hasRedditLaunch(launch)}
+                  {hasRedditMedia(launch)}
+                  {hasPresskit(launch)}
+                  {hasArticleLink(launch)}
+                  {hasVideoLink(launch)}
                 </div>
               </div>
             ))}
