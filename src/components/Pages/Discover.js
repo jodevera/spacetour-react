@@ -9,6 +9,7 @@ const Discover = () => {
   const LAUNCHPAD_URL = "http://localhost:3600/launchpads";
   const [launches, setLaunches] = useState([]);
   const [launchPads, setLaunchPads] = useState([]);
+  const [filteredLaunches, setFilteredLaunches] = useState([]);
 
   //get launch API Response
 
@@ -18,12 +19,14 @@ const Discover = () => {
         const response = await fetch(LAUNCH_URL);
         const listLaunches = await response.json();
         setLaunches(listLaunches);
+        setFilteredLaunches(listLaunches);
       } catch (err) {
         console.log(err.stack);
       }
     };
     (async () => await fetchLaunches())();
   }, []);
+
   //get launchpad API Response
 
   useEffect(() => {
@@ -174,39 +177,57 @@ const Discover = () => {
     }
   };
 
-  const lowercasedKeyword = keyword.toString().toLowerCase();
-  const lowercasedLpFilter = lpFilter.toString().toLowerCase();
-
-  console.log("keyword: " + lowercasedKeyword);
-  console.log("launchpad: " + lowercasedLpFilter);
+  console.log("keyword: " + keyword);
+  console.log("launchpad: " + lpFilter);
   console.log("min year: " + minYearFilter);
   console.log("max year: " + maxYearFilter);
 
-  const filteredLaunches = launches.filter((launch) => {
-    var rawDate = new Date(launch.launch_date_local);
-    var rawYear = rawDate.getFullYear();
+  //APPLY SEARCH ON CLICK
 
-    return (
-      //KEYWORD FILTER
-      //check launch array
-      (Object.keys(launch).some(
-        (key) =>
-          typeof launch[key] === "string" &&
-          launch[key].toLowerCase().includes(lowercasedKeyword)
-      ) ||
-        //check rocket attributes
-        Object.keys(launch.rocket).some(
+  const handleApply = () => {
+    //lowercase keywords
+    const lowercasedKeyword = keyword.toString().toLowerCase();
+    const lowercasedLpFilter = lpFilter.toString().toLowerCase();
+
+    const tempFilteredLaunches = launches.filter((launch) => {
+
+    //convert dates to year
+      var rawDate = new Date(launch.launch_date_local);
+      var rawYear = rawDate.getFullYear();
+
+      return (
+        //KEYWORD FILTER
+        //check launch array
+        (Object.keys(launch).some(
           (key) =>
-            typeof launch.rocket[key] === "string" &&
-            launch.rocket[key].toLowerCase().includes(lowercasedKeyword)
+            typeof launch[key] === "string" &&
+            launch[key].toLowerCase().includes(lowercasedKeyword)
         ) ||
-        //check payloads
-        Object.keys(launch.payloads).some(
-          (key) =>
-            typeof launch.payloads[key] === "string" &&
-            launch.payloads[key].toLowerCase().includes(lowercasedKeyword)
-        ) ||
-        //check launchpads while matching with launchpad API
+          //check rocket attributes
+          Object.keys(launch.rocket).some(
+            (key) =>
+              typeof launch.rocket[key] === "string" &&
+              launch.rocket[key].toLowerCase().includes(lowercasedKeyword)
+          ) ||
+          //check payloads
+          Object.keys(launch.payloads).some(
+            (key) =>
+              typeof launch.payloads[key] === "string" &&
+              launch.payloads[key].toLowerCase().includes(lowercasedKeyword)
+          ) ||
+          //check launchpads while matching with launchpad API
+          Object.keys(launch.launch_site).some(
+            (key) =>
+              typeof launch.launch_site[key] === "string" &&
+              launchPads
+                .filter(
+                  (launchpad) => launch?.launch_site?.site_id === launchpad?.id
+                )[0]
+                ?.full_name.toLowerCase()
+                .includes(lowercasedKeyword)
+          )) &&
+        //LAUNCHPAD FILTER
+        //check launchpads via launchpad filter
         Object.keys(launch.launch_site).some(
           (key) =>
             typeof launch.launch_site[key] === "string" &&
@@ -215,29 +236,22 @@ const Discover = () => {
                 (launchpad) => launch?.launch_site?.site_id === launchpad?.id
               )[0]
               ?.full_name.toLowerCase()
-              .includes(lowercasedKeyword)
-        )) &&
-      //LAUNCHPAD FILTER
-      //check launchpads via launchpad filter
-      Object.keys(launch.launch_site).some(
-        (key) =>
-          typeof launch.launch_site[key] === "string" &&
-          launchPads
-            .filter(
-              (launchpad) => launch?.launch_site?.site_id === launchpad?.id
-            )[0]
-            ?.full_name.toLowerCase()
-            .includes(lowercasedLpFilter)
-      ) &&
-      //YEAR FILTER
-      //min year
-      Object.keys(launch.launch_date_local).some(
-        () => rawYear >= minYearFilter
-      ) &&
-      //max year
-      Object.keys(launch.launch_date_local).some(() => rawYear <= maxYearFilter)
-    );
-  });
+              .includes(lowercasedLpFilter)
+        ) &&
+        //YEAR FILTER
+        //min year
+        Object.keys(launch.launch_date_local).some(
+          () => rawYear >= minYearFilter
+        ) &&
+        //max year
+        Object.keys(launch.launch_date_local).some(
+          () => rawYear <= maxYearFilter
+        )
+      );
+    });
+
+    setFilteredLaunches(tempFilteredLaunches);
+  };
 
   //get no. of missions
   var noOfMissions = filteredLaunches.length;
@@ -255,6 +269,7 @@ const Discover = () => {
     var convertedHour;
     var convertedMinute;
 
+    //convert month
     if (month === 1) {
       convertedMonth = "January";
     } else if (month === 2) {
@@ -281,6 +296,7 @@ const Discover = () => {
       convertedMonth = "December";
     }
 
+    //convert date
     if (day === 1) {
       convertedDay = "1st";
     } else if (day === 2) {
@@ -301,10 +317,12 @@ const Discover = () => {
       convertedDay = "31st";
     }
 
+    //convert minute
     if (minute <= 9) {
       convertedMinute = "0" + minute;
     } else convertedMinute = minute;
 
+    //convert hour
     if (hour <= 9) {
       convertedHour = "0" + hour;
     } else convertedHour = hour;
@@ -331,7 +349,7 @@ const Discover = () => {
         <div className="discoverText heading3">DISCOVER SPACE MISSIONS</div>
         <div className="discoverIcon">
           <img
-            onClick={() => handleClick()}
+            onClick={handleClick}
             className="discoverChevDownSrc"
             id="destImg"
             src={chevronImg}
@@ -405,7 +423,13 @@ const Discover = () => {
           <div className="discoverButtonContainer">
             <span>&nbsp;</span>
             <br />
-            <button className="discoverApplyButton bodytext">Apply</button>
+            <button
+              className="discoverApplyButton bodytext"
+              type="submit"
+              onClick={handleApply}
+            >
+              Apply
+            </button>
           </div>
         </div>
         <div className="noOfMissionsContainer bodytext">
