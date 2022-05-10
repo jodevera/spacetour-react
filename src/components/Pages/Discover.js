@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./styles/discover.css";
 import chevronImg from "../../assets/destination/down-chevron.svg";
+import logo from "../../assets/destination/logo.svg";
+import {} from "react-dom/test-utils";
 
 const Discover = () => {
   //setup APIs
@@ -341,89 +343,129 @@ const Discover = () => {
 
   const isSuccessful = (bool) => {
     if (bool === false) {
-      return <span className="heading5 launchSuccess">&nbsp;Failed Mission</span>;
+      return (
+        <>
+          <br />
+          <span className="heading5 launchSuccess">Failed Mission</span>
+        </>
+      );
     }
   };
 
-  const hasPatch = (x) => {
-    const urlExists = (x) => {
-      var http = new XMLHttpRequest();
-      http.open("HEAD", x, false);
-      http.send();
-      if (http.status !== 404) return true;
-      else return false;
-    };
-    if (urlExists(x) === true)
-      return (
-        <div className="launchIconContainer">
-          <img className="launchIconSrc" src={x} alt="patch" />
-        </div>
-      );
+  const displayImg = (imgsrc) => {
+    return (
+      <div className="launchIconContainer">
+        <img className="launchIconSrc" onError ={(e)=>{e.target.onerror = null; e.target.src=logo}} src={imgsrc} alt="patch" />
+      </div>
+    );
   };
+  const displayImgMob = (imgsrc) => {
+    return (
+      <div className="launchIconContainerMob">
+        <img className="launchIconSrc" onError ={(e)=>{e.target.onerror = null; e.target.src=logo}} src={imgsrc} alt="patch" />
+      </div>
+    );
+  };
+
+  // const hasImg = (x) => {
+  //   const img = new Image();
+  //   img.src = x.links.mission_patch;
+
+  //   var imageStatus = (img.onload = function () {
+  //     var imageComplete = img.complete;
+  //     if (imageComplete === true) {
+  //       return true;
+  //     }
+  //   });
+  //   console.log("is " + img.src + " showing: " + imageStatus());
+  //   if (imageStatus() === true) {
+  //     return displayImg(img.src);
+  //   }
+  // };
+
+  const hasImg = (x) => {
+    return displayImg(x.links.mission_patch);
+  };
+  const hasImgMob = (x) => {
+    return displayImgMob(x.links.mission_patch);
+  };
+
   const hasRedditCampaign = (x) => {
     // console.log("campaign: "+x.links.hasOwnProperty('reddit_campaign'));
-    if (x.links.hasOwnProperty('reddit_campaign') === true && x.links.reddit_campaign !== null) {
+    if (
+      x.links.hasOwnProperty("reddit_campaign") === true &&
+      x.links.reddit_campaign !== null
+    ) {
       return (
         <a href={x.links.reddit_campaign} target="_blank" rel="noreferrer">
           <button className="launchButton bodytext">Reddit Campaign</button>
         </a>
       );
-      
     }
   };
   const hasRedditLaunch = (x) => {
     // console.log("launch: "+x.links.hasOwnProperty('reddit_launch'));
-    if (x.links.hasOwnProperty('reddit_launch') === true && x.links.reddit_launch !== null) {
+    if (
+      x.links.hasOwnProperty("reddit_launch") === true &&
+      x.links.reddit_launch !== null
+    ) {
       return (
         <a href={x.links.reddit_launch} target="_blank" rel="noreferrer">
           <button className="launchButton bodytext">Reddit Launch</button>
         </a>
       );
-      
     }
   };
   const hasRedditMedia = (x) => {
     // console.log("launch: "+x.links.hasOwnProperty('reddit_media'));
-    if (x.links.hasOwnProperty('reddit_media') === true && x.links.reddit_media !== null) {
+    if (
+      x.links.hasOwnProperty("reddit_media") === true &&
+      x.links.reddit_media !== null
+    ) {
       return (
         <a href={x.links.reddit_media} target="_blank" rel="noreferrer">
           <button className="launchButton bodytext">Reddit Media</button>
         </a>
       );
-      
     }
   };
   const hasPresskit = (x) => {
     // console.log("launch: "+x.links.hasOwnProperty('presskit'));
-    if (x.links.hasOwnProperty('presskit') === true && x.links.presskit !== null) {
+    if (
+      x.links.hasOwnProperty("presskit") === true &&
+      x.links.presskit !== null
+    ) {
       return (
         <a href={x.links.presskit} target="_blank" rel="noreferrer">
           <button className="launchButton bodytext">Presskit</button>
         </a>
       );
-      
     }
   };
   const hasArticleLink = (x) => {
     // console.log("launch: "+x.links.hasOwnProperty('article_link'));
-    if (x.links.hasOwnProperty('article_link') === true && x.links.article_link !== null) {
+    if (
+      x.links.hasOwnProperty("article_link") === true &&
+      x.links.article_link !== null
+    ) {
       return (
         <a href={x.links.article_link} target="_blank" rel="noreferrer">
           <button className="launchButton bodytext">Article</button>
         </a>
       );
-      
     }
   };
   const hasVideoLink = (x) => {
     // console.log("launch: "+x.links.hasOwnProperty('video_link'));
-    if (x.links.hasOwnProperty('video_link') === true && x.links.video_link !== null) {
+    if (
+      x.links.hasOwnProperty("video_link") === true &&
+      x.links.video_link !== null
+    ) {
       return (
         <a href={x.links.video_link} target="_blank" rel="noreferrer">
           <button className="launchButton bodytext">Video</button>
         </a>
       );
-      
     }
   };
 
@@ -477,7 +519,7 @@ const Discover = () => {
           </div>
           <div className="discoverSearchInput">
             <label for="minyear" className="discoverLabel bodytext">
-              Min Year
+              Min&nbsp;Year
             </label>
             <select
               className="discoverTextBox"
@@ -493,7 +535,7 @@ const Discover = () => {
           </div>
           <div className="discoverSearchInput">
             <label for="maxyear" className="discoverLabel bodytext">
-              Max Year
+              Max&nbsp;Year
             </label>
             <select
               className="discoverTextBox"
@@ -530,29 +572,42 @@ const Discover = () => {
                 key={"launch" + x + "payload" + y}
               >
                 <div className="launchText">
-                  {hasPatch(launch.links.mission_patch)}
-                  <div className="rocketInfo">
-                    <span className="heading5 rocketName">
-                      {launch.rocket.rocket_name}&nbsp;-&nbsp;
-                    </span>
-                    <span className="heading5 rocketType">
-                      {payload.payload_id}
-                    </span>
-                    {isSuccessful(launch.launch_success)}
-                    <br />
-                    <span className="rocketDateLabel bodytext">
-                      Launched <b>{convertDate(launch.launch_date_local)}</b>{" "}
-                      from{" "}
-                      <strong>
-                        {
-                          launchPads.filter(
-                            (launchpad) =>
-                              launch?.launch_site?.site_id === launchpad?.id
-                          )[0]?.full_name
-                        }
-                      </strong>
-                    </span>
+                  <div className="launchHeader">
+                    {hasImg(launch)}
+                    <div className="rocketInfo">
+                      <div className="rocketTextContainer">
+                        {hasImgMob(launch)}
+                        <div className="rocketText">
+                          <span className="heading5 rocketName">
+                            {launch.rocket.rocket_name} - {payload.payload_id}
+                          </span>
+                          {isSuccessful(launch.launch_success)}
+                          <br />
+                        </div>
+                      </div>
+                      <span className="rocketDateLabel bodytext">
+                        Launched <b>{convertDate(launch.launch_date_local)}</b>{" "}
+                        from{" "}
+                        <strong>
+                          {
+                            launchPads.filter(
+                              (launchpad) =>
+                                launch?.launch_site?.site_id === launchpad?.id
+                            )[0]?.full_name
+                          }
+                        </strong>
+                      </span>
+                      <div className="launchButtonContainer">
+                        {hasRedditCampaign(launch)}
+                        {hasRedditLaunch(launch)}
+                        {hasRedditMedia(launch)}
+                        {hasPresskit(launch)}
+                        {hasArticleLink(launch)}
+                        {hasVideoLink(launch)}
+                      </div>
+                    </div>
                   </div>
+
                   <div className="flightNumberContainer">
                     <span className="heading5 flightNumber">
                       #{launch.flight_number}
@@ -562,14 +617,6 @@ const Discover = () => {
                       Flight Number
                     </span>
                   </div>
-                </div>
-                <div className="launchButtonContainer">
-                  {hasRedditCampaign(launch)}
-                  {hasRedditLaunch(launch)}
-                  {hasRedditMedia(launch)}
-                  {hasPresskit(launch)}
-                  {hasArticleLink(launch)}
-                  {hasVideoLink(launch)}
                 </div>
               </div>
             ))}

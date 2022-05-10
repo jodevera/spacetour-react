@@ -8,7 +8,7 @@
   overflow-y: hidden;
 }
 .discoverText {
-  margin-top: 25vh;
+  margin-top: 15vh;
   text-align: center;
 }
 .discoverIcon {
@@ -39,12 +39,10 @@
   flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.05); /*  5% opaque white */
   backdrop-filter: blur(50px);
-  height: 60px;
   padding: 20px;
   display: flex;
   margin-left: 50px;
   margin-right: 50px;
-  margin-bottom: 20px;
 }
 .discoverLabel {
   color: white !important;
@@ -58,11 +56,13 @@
   width: 100%;
   border-radius: 4px;
   padding: 3px;
+  -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 .discoveryButtonContainer {
   display: flex;
-  align-items: flex-end;
-  align-self: flex-end;
+  flex: 1;
 }
 .discoverApplyButton {
   color: white;
@@ -70,8 +70,8 @@
   margin-right: 20px;
   border: 1px solid #777;
   border-radius: 8px;
-  width: 120px;
   cursor: pointer;
+  width: 100%;
 }
 .discoverApplyButton:hover {
   background-color: #777;
@@ -92,12 +92,14 @@
 .flightNumber {
   color: white;
 }
-.rocketInfo {
-  flex: 7;
-}
 .flightNumberContainer {
   text-align: center;
   flex: 1;
+  margin-left: 20px;
+}
+.launchHeader {
+  display:flex;
+  flex: 7;
 }
 .launchButtonContainer {
   flex-wrap: wrap;
@@ -107,7 +109,8 @@
 .launchButton {
   color: white;
   background-color: rgba(255, 255, 255, 0.1);
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-top: 10px;
   border: 1px solid #777;
   border-radius: 8px;
   cursor: pointer;
@@ -115,9 +118,14 @@
 .launchButton:hover {
   background-color: #777;
 }
+.launchIconContainerMob {
+  display: none;
+}
 .launchIconSrc {
   max-width: 50px;
   max-height: 50px;
+}
+.launchIconContainer {
   margin-right: 20px;
 }
 .discoverTextBox {
@@ -136,13 +144,77 @@
   text-decoration: underline;
 }
 .noOfMissionsContainer {
+  margin-top: 20px;
   text-align: center;
 }
 .launchSuccess {
+  font-size: 16px;
   color: red;
+}
+.rocketText {
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+@media only screen and (max-width: 1024px) {
+  .discoverInputContainer, .discoverResults {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
 @media only screen and (max-width: 480px) {
   .discoverText {
     font-size: 32px;
+  }
+  .rocketName, .rocketType {
+    font-size: 26px;
+  }
+  .launchSuccess{
+    font-size: 16px;
+  }
+  .flightNumber {
+    font-size: 22px;
+  }
+  .discoverInputContainer {
+    flex-direction: column;
+  }
+  .discoverSearchInput {
+    margin: 0;
+
+  }
+  .discoverResults, .discoverInputContainer {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+  }
+  .discoverResults {
+    padding: 20px;
+  }
+  .rocketDateLabel, .discoverLabel, .launchButton {
+    font-size: 14px;
+  }
+  .launchButton{
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+  .launchText {
+    flex-direction: column;
+  }
+  .launchIconContainer {
+    display: none;
+  }
+  .flightNumberContainer {
+    text-align: left;
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+  .noOfMissionsContainer {
+    margin-top: 10px;
+  }
+  .rocketTextContainer{
+    display: flex;
+  }
+  .launchIconContainerMob {
+    display: block;
+    margin-right: 20px;
   }
 }
