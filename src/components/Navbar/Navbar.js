@@ -24,6 +24,22 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    const hideNav = {
+      transform: "translateX(100%)",
+    };
+
+    const showIcon = {
+      display: "inline-block",
+    };
+
+    const hideIcon = {
+      display: "none",
+    };
+
+    const changeWindow = () => {
+      setNavStatus(hideNav);
+    };
+
     if (windowSize.width <= "480") {
       setHbStatus(showIcon);
       changeWindow();
@@ -40,44 +56,38 @@ const Navbar = () => {
     display: "block",
   };
 
-  const hideNav = {
-    transform: "translateX(100%)",
-  };
-
-  const showIcon = {
+  const showIcon2 = {
     display: "inline-block",
   };
 
-  const hideIcon = {
+  const hideIcon2 = {
     display: "none",
   };
-
-  const [navStatus, setNavStatus] = useState(hideNav);
+  const hideNav2 = {
+    transform: "translateX(100%)",
+  };
+  const [navStatus, setNavStatus] = useState(hideNav2);
 
   const [hbStatus, setHbStatus] = useState(showNav);
 
   const [closeStatus, setCloseStatus] = useState();
 
   const clickHB = () => {
-    setCloseStatus(showIcon);
-    setHbStatus(hideIcon);
+    setCloseStatus(showIcon2);
+    setHbStatus(hideIcon2);
     setNavStatus(showNav);
   };
 
   const clickClose = () => {
-    setCloseStatus(hideIcon);
-    setHbStatus(showIcon);
-    setNavStatus(hideNav);
+    setCloseStatus(hideIcon2);
+    setHbStatus(showIcon2);
+    setNavStatus(hideNav2);
   };
 
   const clickNav = () => {
-    setNavStatus(hideNav);
-    setCloseStatus(hideIcon);
-    setHbStatus(showIcon);
-  };
-
-  const changeWindow = () => {
-    setNavStatus(hideNav);
+    setNavStatus(hideNav2);
+    setCloseStatus(hideIcon2);
+    setHbStatus(showIcon2);
   };
 
   const handleRefresh = () => {
