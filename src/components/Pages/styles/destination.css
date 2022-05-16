@@ -158,17 +158,16 @@
 @media only screen and (max-width: 480px) {
   .destinationContainer {
     margin-top: 90px;
-    margin-left: 10px;
-    margin-right: 10px;
-
+    margin-left: 0px;
+    margin-right: 0px;
   }
   .destinationImgSrc {
     height: 170px;
     width: 170px;
   }
   .destinationText {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
     width: 100%;
   }
   .destinationNavText {
@@ -179,6 +178,8 @@
   }
   .destinationDesc {
     font-size: 12px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
   .destinationLabel {
     font-size: 12px;
@@ -191,5 +192,8 @@
   }
   .destinationETT {
     margin-top: 25px;
+  }
+  .horizontal-line{
+    display: none;
   }
 }

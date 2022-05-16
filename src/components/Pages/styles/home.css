@@ -18,6 +18,7 @@
   display: flex;
   flex: 1;
   justify-content: center;
+  height: 300px;
 }
 .exploreLink {
   display: flex;
@@ -48,7 +49,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100%;
   }
   .landingText {
     margin-top: 100px;
@@ -75,8 +75,7 @@
   }
   .exploreContainer {
     margin-right: 0;
-    margin-top: 10vh;
-    margin-bottom: 10vh;
+    margin-top: 5vh;
   }
   .explore {
     height: 242px;
@@ -123,6 +122,6 @@
   }
 
   .explore:hover {
-    box-shadow: 0 0 0 30px #333;
+    box-shadow: 0 0 0 60px rgba(0, 0, 0, 0.5);
   }
 }

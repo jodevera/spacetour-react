@@ -64,7 +64,7 @@
   .crewName {
     margin-left: -5%;
     margin-right: -5%;
-    font-size: 48px;
+    font-size: 40px;
   }
   .crewContainer {
     flex-direction: column;
@@ -118,7 +118,7 @@
   }
   .crewName {
     order: 3;
-    font-size: 25px;
+    font-size: 26px;
   }
   .crewDesc {
     order: 4;
