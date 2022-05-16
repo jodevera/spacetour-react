@@ -158,14 +158,18 @@
 @media only screen and (max-width: 480px) {
   .destinationContainer {
     margin-top: 90px;
+    margin-left: 10px;
+    margin-right: 10px;
+
   }
   .destinationImgSrc {
     height: 170px;
     width: 170px;
   }
   .destinationText {
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
   }
   .destinationNavText {
     font-size: 14px;
