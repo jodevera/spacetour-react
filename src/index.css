@@ -37,18 +37,22 @@ body {
 .pageHome {
   background-size: cover;
   background-image: url('./assets/destination/background-home-desktop.jpg');
+  background-attachment: fixed;
 }
 .pageDest {
   background-size: cover;
   background-image: url('./assets/destination/background-destination-desktop.jpg');
+  background-attachment: fixed;
 }
 .pageCrew {
   background-size: cover;
   background-image: url('./assets/destination/background-crew-desktop.jpg');
+  background-attachment: fixed;
 }
 .pageTech {
   background-size: cover;
   background-image: url('./assets/destination/background-technology-desktop.jpg');
+  background-attachment: fixed;
 }
 .pageDisc {
   background-size: cover;
