@@ -1,45 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "./styles/destination.css";
-
 import "./styles/tech.css";
-import capsuleImgLand from "../../assets/destination/image-space-capsule-landscape.jpg";
-import capsuleImgPort from "../../assets/destination/image-space-capsule-portrait.jpg";
-import spaceportImgLand from "../../assets/destination/image-spaceport-landscape.jpg";
-import spaceportImgPort from "../../assets/destination/image-spaceport-portrait.jpg";
-import vehicleImgLand from "../../assets/destination/image-launch-vehicle-landscape.jpg";
-import vehicleImgPort from "../../assets/destination/image-launch-vehicle-portrait.jpg";
+import { technologies as techObj } from "../../data/technologies.js";
+
 
 const Technology = () => {
-  const techObj = [
-    {
-      id: "vehicle",
-      title: "LAUNCH VEHICLE",
-      landImage: vehicleImgLand,
-      portImage: vehicleImgPort,
-      desc: "A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!",
-    },
-    {
-      id: "spaceport",
-      title: "SPACEPORT",
-      landImage: spaceportImgLand,
-      portImage: spaceportImgPort,
-      desc: "A spaceport or cosmodrome is a site for launching (or receiving) spacecraft, by analogy to the seaport for ships or airport for aircraft. Based in the famous Cape Canaveral, our spaceport is ideally situated to take advantage of the Earth’s rotation for launch.",
-    },
-    {
-      id: "capsule",
-      title: "SPACE CAPSULE",
-      landImage: capsuleImgLand,
-      portImage: capsuleImgPort,
-      desc: "A space capsule is an often-crewed spacecraft that uses a blunt-body reentry capsule to reenter the Earth's atmosphere without wings. Our capsule is where you'll spend your time during the flight. It includes a space gym, cinema, and plenty of other activities to keep you entertained.",
-    },
-  ];
+  //set default tech to be displayed
+  const defaultTech = techObj.find( ({ id }) => id === "vehicle");
 
-  const [title, setTitle] = useState("LAUNCH VEHICLE");
-  const [imgPort, setImgPort] = useState(vehicleImgPort);
-  const [imgLand, setImgLand] = useState(vehicleImgLand);
-  const [desc, setDesc] = useState(
-    "A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!"
-  );
+  const [title, setTitle] = useState(defaultTech.title);
+  const [imgPort, setImgPort] = useState(defaultTech.portImage);
+  const [imgLand, setImgLand] = useState(defaultTech.landImage);
+  const [desc, setDesc] = useState(defaultTech.desc);
 
   const selected = "techSelect";
   const unselected = "techUnselect";
@@ -49,27 +20,37 @@ const Technology = () => {
   const [techCapsuleStatus, setTechCapsuleStatus] = useState(unselected);
 
   const setTech = (tech) => {
+    
     const techTemp = techObj.find((x) => x.id === tech);
+
     setTitle(techTemp.title);
     setImgPort(techTemp.portImage);
     setImgLand(techTemp.landImage);
     setDesc(techTemp.desc);
-    if (tech === "vehicle") {
-      setTechVehicleStatus(selected);
-      setTechSpaceportStatus(unselected);
-      setTechCapsuleStatus(unselected);
-    } else if (tech === "spaceport") {
-      setTechVehicleStatus(unselected);
-      setTechSpaceportStatus(selected);
-      setTechCapsuleStatus(unselected);
-    } else if (tech === "capsule") {
-      setTechVehicleStatus(unselected);
-      setTechSpaceportStatus(unselected);
-      setTechCapsuleStatus(selected);
+
+    switch (tech) {
+      case "vehicle":
+        setTechVehicleStatus(selected);
+        setTechSpaceportStatus(unselected);
+        setTechCapsuleStatus(unselected);
+        break;
+      case "spaceport":
+        setTechVehicleStatus(unselected);
+        setTechSpaceportStatus(selected);
+        setTechCapsuleStatus(unselected);
+        break;
+      case "capsule":
+        setTechVehicleStatus(unselected);
+        setTechSpaceportStatus(unselected);
+        setTechCapsuleStatus(selected);
+        break;
+      default:
+        setTechVehicleStatus(selected);
+        setTechSpaceportStatus(unselected);
+        setTechCapsuleStatus(unselected);
+        break;
     }
   };
-
-
 
   const [windowSize, setWindowSize] = useState({
     width: undefined,

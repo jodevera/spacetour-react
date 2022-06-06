@@ -179,11 +179,6 @@ const Discover = () => {
     }
   };
 
-  // console.log("keyword: " + keyword);
-  // console.log("launchpad: " + lpFilter);
-  // console.log("min year: " + minYearFilter);
-  // console.log("max year: " + maxYearFilter);
-
   //APPLY SEARCH ON CLICK
 
   const handleApply = () => {
@@ -367,22 +362,6 @@ const Discover = () => {
     );
   };
 
-  // const hasImg = (x) => {
-  //   const img = new Image();
-  //   img.src = x.links.mission_patch;
-
-  //   var imageStatus = (img.onload = function () {
-  //     var imageComplete = img.complete;
-  //     if (imageComplete === true) {
-  //       return true;
-  //     }
-  //   });
-  //   console.log("is " + img.src + " showing: " + imageStatus());
-  //   if (imageStatus() === true) {
-  //     return displayImg(img.src);
-  //   }
-  // };
-
   const hasImg = (x) => {
     return displayImg(x.links.mission_patch);
   };
@@ -391,7 +370,7 @@ const Discover = () => {
   };
 
   const hasRedditCampaign = (x) => {
-    // console.log("campaign: "+x.links.hasOwnProperty('reddit_campaign'));
+    
     if (
       x.links.hasOwnProperty("reddit_campaign") === true &&
       x.links.reddit_campaign !== null
@@ -404,7 +383,7 @@ const Discover = () => {
     }
   };
   const hasRedditLaunch = (x) => {
-    // console.log("launch: "+x.links.hasOwnProperty('reddit_launch'));
+    
     if (
       x.links.hasOwnProperty("reddit_launch") === true &&
       x.links.reddit_launch !== null
@@ -417,7 +396,7 @@ const Discover = () => {
     }
   };
   const hasRedditMedia = (x) => {
-    // console.log("launch: "+x.links.hasOwnProperty('reddit_media'));
+    
     if (
       x.links.hasOwnProperty("reddit_media") === true &&
       x.links.reddit_media !== null
@@ -430,7 +409,7 @@ const Discover = () => {
     }
   };
   const hasPresskit = (x) => {
-    // console.log("launch: "+x.links.hasOwnProperty('presskit'));
+    
     if (
       x.links.hasOwnProperty("presskit") === true &&
       x.links.presskit !== null
@@ -443,7 +422,7 @@ const Discover = () => {
     }
   };
   const hasArticleLink = (x) => {
-    // console.log("launch: "+x.links.hasOwnProperty('article_link'));
+    
     if (
       x.links.hasOwnProperty("article_link") === true &&
       x.links.article_link !== null
@@ -456,7 +435,7 @@ const Discover = () => {
     }
   };
   const hasVideoLink = (x) => {
-    // console.log("launch: "+x.links.hasOwnProperty('video_link'));
+    
     if (
       x.links.hasOwnProperty("video_link") === true &&
       x.links.video_link !== null

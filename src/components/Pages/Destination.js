@@ -1,53 +1,18 @@
 import React, { useState } from "react";
 import "./styles/destination.css";
-import moonImg from "../../assets/destination/image-moon.png";
-import marsImg from "../../assets/destination/image-mars.png";
-import europaImg from "../../assets/destination/image-europa.png";
-import titanImg from "../../assets/destination/image-titan.png";
+import { destinations as destObj } from "../../data/destinations.js";
+
 
 const Destination = () => {
-  const destObj = [
-    {
-      id: "moon",
-      title: "MOON",
-      image: moonImg,
-      desc: "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
-      avgTime: "384,400KM",
-      eTT: "3 DAYS",
-    },
-    {
-      id: "mars",
-      title: "MARS",
-      image: marsImg,
-      desc: "Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!",
-      avgTime: "225 MIL. KM",
-      eTT: "9 MONTHS",
-    },
-    {
-      id: "europa",
-      title: "EUROPA",
-      image: europaImg,
-      desc: "The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.",
-      avgTime: "628 MIL. KM",
-      eTT: "3 YEARS",
-    },
-    {
-      id: "titan",
-      title: "TITAN",
-      image: titanImg,
-      desc: "The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.",
-      avgTime: "1.6 BIL. KM",
-      eTT: "7 YEARS",
-    },
-  ];
 
-  const [title, setTitle] = useState("MOON");
-  const [img, setImg] = useState(moonImg);
-  const [desc, setDesc] = useState(
-    "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites."
-  );
-  const [avg, setAvg] = useState("384,400KM");
-  const [ett, setEtt] = useState("3 DAYS");
+  //set default destination to be displayed
+  const defaultDestination = destObj.find( ({ id }) => id === "moon");
+
+  const [title, setTitle] = useState(defaultDestination.title);
+  const [img, setImg] = useState(defaultDestination.image);
+  const [desc, setDesc] = useState(defaultDestination.desc);
+  const [avg, setAvg] = useState(defaultDestination.avgTime);
+  const [ett, setEtt] = useState(defaultDestination.eTT);
 
   const selected = "destSelect";
   const unselected = "destUnselect";
@@ -58,34 +23,49 @@ const Destination = () => {
   const [destTitanStatus, setDestTitanStatus] = useState(unselected);
 
   const setDestination = (destination) => {
-    const destTemp = destObj.find((x) => x.id === destination);
+    //set temp to match destination with an element
+    const destTemp = destObj.find( (x) => x.id === destination);
+
     setTitle(destTemp.title);
     setImg(destTemp.image);
     setDesc(destTemp.desc);
     setAvg(destTemp.avgTime);
     setEtt(destTemp.eTT);
-    if (destination === "moon") {
-      setDestMoonStatus(selected);
-      setDestMarsStatus(unselected);
-      setDestEuroStatus(unselected);
-      setDestTitanStatus(unselected);
-    } else if (destination === "mars") {
-      setDestMoonStatus(unselected);
-      setDestMarsStatus(selected);
-      setDestEuroStatus(unselected);
-      setDestTitanStatus(unselected);
-    } else if (destination === "europa") {
-      setDestMoonStatus(unselected);
-      setDestMarsStatus(unselected);
-      setDestEuroStatus(selected);
-      setDestTitanStatus(unselected);
-    } else if (destination === "titan") {
-      setDestMoonStatus(unselected);
-      setDestMarsStatus(unselected);
-      setDestEuroStatus(unselected);
-      setDestTitanStatus(selected);
+
+    switch (destination) {
+      case "moon":
+        setDestMoonStatus(selected);
+        setDestMarsStatus(unselected);
+        setDestEuroStatus(unselected);
+        setDestTitanStatus(unselected);
+        break;
+      case "mars":
+        setDestMoonStatus(unselected);
+        setDestMarsStatus(selected);
+        setDestEuroStatus(unselected);
+        setDestTitanStatus(unselected);
+        break;
+      case "europa":
+        setDestMoonStatus(unselected);
+        setDestMarsStatus(unselected);
+        setDestEuroStatus(selected);
+        setDestTitanStatus(unselected);
+        break
+      case "titan":
+        setDestMoonStatus(unselected);
+        setDestMarsStatus(unselected);
+        setDestEuroStatus(unselected);
+        setDestTitanStatus(selected);
+        break;
+      default:
+        setDestMoonStatus(selected);
+        setDestMarsStatus(unselected);
+        setDestEuroStatus(unselected);
+        setDestTitanStatus(unselected);
+        break;
     }
   };
+  
 
   return (
     <>
@@ -98,7 +78,7 @@ const Destination = () => {
             className="destinationImgSrc"
             id="destImg"
             src={img}
-            alt="Moon"
+            alt={title}
           />
         </div>
         <div className="destinationText">
