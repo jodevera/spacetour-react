@@ -3,9 +3,12 @@ import "./styles/discover.css";
 import chevronImg from "../../assets/destination/down-chevron.svg";
 import logo from "../../assets/destination/logo.svg";
 import {} from "react-dom/test-utils";
+import { MissionCard as Mission } from "./elements/MissionCard.js";
 
 const Discover = () => {
   //setup APIs
+  //npx json-server -p 3500 -w src/data/launches.json
+  //npx json-server -p 3600 -w src/data/launchpads.json
 
   const LAUNCH_URL = "http://localhost:3500/launches";
   const LAUNCHPAD_URL = "http://localhost:3600/launchpads";
@@ -350,14 +353,30 @@ const Discover = () => {
   const displayImg = (imgsrc) => {
     return (
       <div className="launchIconContainer">
-        <img className="launchIconSrc" onError ={(e)=>{e.target.onerror = null; e.target.src=logo}} src={imgsrc} alt="patch" />
+        <img
+          className="launchIconSrc"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = logo;
+          }}
+          src={imgsrc}
+          alt="patch"
+        />
       </div>
     );
   };
   const displayImgMob = (imgsrc) => {
     return (
       <div className="launchIconContainerMob">
-        <img className="launchIconSrc" onError ={(e)=>{e.target.onerror = null; e.target.src=logo}} src={imgsrc} alt="patch" />
+        <img
+          className="launchIconSrc"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = logo;
+          }}
+          src={imgsrc}
+          alt="patch"
+        />
       </div>
     );
   };
@@ -370,7 +389,6 @@ const Discover = () => {
   };
 
   const hasRedditCampaign = (x) => {
-    
     if (
       x.links.hasOwnProperty("reddit_campaign") === true &&
       x.links.reddit_campaign !== null
@@ -383,7 +401,6 @@ const Discover = () => {
     }
   };
   const hasRedditLaunch = (x) => {
-    
     if (
       x.links.hasOwnProperty("reddit_launch") === true &&
       x.links.reddit_launch !== null
@@ -396,7 +413,6 @@ const Discover = () => {
     }
   };
   const hasRedditMedia = (x) => {
-    
     if (
       x.links.hasOwnProperty("reddit_media") === true &&
       x.links.reddit_media !== null
@@ -409,7 +425,6 @@ const Discover = () => {
     }
   };
   const hasPresskit = (x) => {
-    
     if (
       x.links.hasOwnProperty("presskit") === true &&
       x.links.presskit !== null
@@ -422,7 +437,6 @@ const Discover = () => {
     }
   };
   const hasArticleLink = (x) => {
-    
     if (
       x.links.hasOwnProperty("article_link") === true &&
       x.links.article_link !== null
@@ -435,7 +449,6 @@ const Discover = () => {
     }
   };
   const hasVideoLink = (x) => {
-    
     if (
       x.links.hasOwnProperty("video_link") === true &&
       x.links.video_link !== null
@@ -550,53 +563,28 @@ const Discover = () => {
                 className="discoverResults"
                 key={"launch" + x + "payload" + y}
               >
-                <div className="launchText">
-                  <div className="launchHeader">
-                    {hasImg(launch)}
-                    <div className="rocketInfo">
-                      <div className="rocketTextContainer">
-                        {hasImgMob(launch)}
-                        <div className="rocketText">
-                          <span className="heading5 rocketName">
-                            {launch.rocket.rocket_name} - {payload.payload_id}
-                          </span>
-                          {isSuccessful(launch.launch_success)}
-                          <br />
-                        </div>
-                      </div>
-                      <span className="rocketDateLabel bodytext">
-                        Launched <b>{convertDate(launch.launch_date_local)}</b>{" "}
-                        from{" "}
-                        <strong>
-                          {
-                            launchPads.filter(
-                              (launchpad) =>
-                                launch?.launch_site?.site_id === launchpad?.id
-                            )[0]?.full_name
-                          }
-                        </strong>
-                      </span>
-                      <div className="launchButtonContainer">
-                        {hasRedditCampaign(launch)}
-                        {hasRedditLaunch(launch)}
-                        {hasRedditMedia(launch)}
-                        {hasPresskit(launch)}
-                        {hasArticleLink(launch)}
-                        {hasVideoLink(launch)}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flightNumberContainer">
-                    <span className="heading5 flightNumber">
-                      #{launch.flight_number}
-                    </span>
-                    <br />
-                    <span className="rocketDateLabel bodytext">
-                      Flight Number
-                    </span>
-                  </div>
-                </div>
+                <Mission
+                  key={y}
+                  missionPatch={hasImg(launch)}
+                  missionPatchMob={hasImgMob(launch)}
+                  successText={isSuccessful(launch.launch_success)}
+                  flightNumber={launch.flight_number}
+                  payloadID={payload.payload_id}
+                  rocketName={launch.rocket.rocket_name}
+                  launchDate={convertDate(launch.launch_date_local)}
+                  launchLocation={
+                    launchPads.filter(
+                      (launchpad) =>
+                        launch?.launch_site?.site_id === launchpad?.id
+                    )[0]?.full_name
+                  }
+                  buttonRedditCamp={hasRedditCampaign(launch)}
+                  buttonRedditLaunch={hasRedditLaunch(launch)}
+                  buttonRedditMed={hasRedditMedia(launch)}
+                  buttonPresskit={hasPresskit(launch)}
+                  buttonArticle={hasArticleLink(launch)}
+                  buttonVideo={hasVideoLink(launch)}
+                />
               </div>
             ))}
           </div>

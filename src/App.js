@@ -28,8 +28,6 @@ function App() {
     setCurrentUrl(pathname);
   }, [pathname]);
 
-  console.log(pathname);
-
   useEffect(() => {
     if (currentUrl === "/destination") {
       setBgStatus(pageDest);
