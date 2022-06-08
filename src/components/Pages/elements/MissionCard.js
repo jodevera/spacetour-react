@@ -7,6 +7,7 @@ const MissionCard = ({
   payloadID,
   launchLocation,
   launchDate,
+  launchTime,
   buttonRedditCamp,
   buttonRedditLaunch,
   buttonRedditMed,
@@ -31,7 +32,7 @@ const MissionCard = ({
               </div>
             </div>
             <span className="rocketDateLabel bodytext">
-              Launched <b>{launchDate}</b> from{" "}
+              Launched <b>{launchDate}</b> at <b>{launchTime}</b> from{" "}
               <strong>{launchLocation}</strong>
             </span>
             <div className="launchButtonContainer">
