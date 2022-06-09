@@ -50,7 +50,7 @@ const Destination = () => {
         setDestMarsStatus(unselected);
         setDestEuroStatus(selected);
         setDestTitanStatus(unselected);
-        break
+        break;
       case "titan":
         setDestMoonStatus(unselected);
         setDestMarsStatus(unselected);

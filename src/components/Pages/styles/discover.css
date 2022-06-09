@@ -40,9 +40,8 @@
   background: rgba(255, 255, 255, 0.05); /*  5% opaque white */
   backdrop-filter: blur(50px);
   padding: 20px;
+  margin-top: 50px;
   display: flex;
-  margin-left: 50px;
-  margin-right: 50px;
 }
 .discoverLabel {
   color: white !important;
@@ -140,6 +139,7 @@
 .backToTopContainer {
   text-align: center;
   margin-top: 20px;
+  padding-bottom: 20px;
   cursor: pointer;
   text-decoration: underline;
 }
@@ -156,7 +156,7 @@
   text-overflow: ellipsis; 
 }
 @media only screen and (max-width: 1024px) {
-  .discoverInputContainer, .discoverResults {
+  .discoverResults {
     margin-left: 20px;
     margin-right: 20px;
   }

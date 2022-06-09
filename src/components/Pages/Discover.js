@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import moment from "moment";
 import "./styles/discover.css";
-import chevronImg from "../../assets/destination/down-chevron.svg";
 import logo from "../../assets/destination/logo.svg";
 import {} from "react-dom/test-utils";
 import { MissionCard as Card } from "./elements/MissionCard.js";
 import { MissionSearch as Search } from "./elements/MissionSearch.js";
-import { MissionBanner as Banner } from "./elements/MissionBanner.js";
+import chevronImg from "../../assets/destination/down-chevron.svg";
 import { years as yearList } from "../../data/years.js";
 
 const Discover = () => {
@@ -51,12 +50,13 @@ const Discover = () => {
     (async () => await fetchLaunchPads())();
   }, []);
 
-  //scroll to search container
+  //scroll to search component
 
-  const launchRef = useRef(null);
+  let launchRef = useRef();
 
-  const handleClick = () => {
-    launchRef.current.scrollIntoView({ behavior: "smooth" });
+  function handleClick(ref) {
+    if (!ref.current) return;
+    ref.current.scrollIntoView({ behavior: "smooth" });
   };
 
   //keyword filter
@@ -290,70 +290,77 @@ const Discover = () => {
   //DISPLAY COMPONENTS
   return (
     <>
-      <Banner 
-        click={handleClick} 
-        image={chevronImg} 
-      />
-      <div className="discoverSearch" ref={launchRef}>
-        <Search
-          keywordChange={handleKeywordChange}
-          launchpadChange={handleLPChange}
-          launchpadList={launchPads.map((launchpad) => (
-            <option value={launchpad.full_name}>{launchpad.full_name}</option>
-          ))}
-          minYrChange={handleMinYearChange}
-          minYrValue={minYearValue}
-          maxYrChange={handleMaxYearChange}
-          maxYrValue={maxYearValue}
-          years={yearList.map((year) => (
-            <option value={year.minvalue}>{year.name}</option>
-          ))}
-          apply={handleApply}
-        />
-        <div className="noOfMissionsContainer bodytext">
-          <span>Showing {noOfMissions} Missions</span>
+      <div className="subtitle heading5">
+        <span className="number">04</span>&nbsp;REVISIT YOUR JOURNIES
+      </div>
+      <div className="discoverContainer">
+        <div className="discoverText heading3">DISCOVER SPACE MISSIONS</div>
+        <div className="discoverIcon">
+          <img
+            onClick={() => handleClick(launchRef)}
+            className="discoverChevDownSrc"
+            id="destImg"
+            src={chevronImg}
+            alt="chevron"
+          />
         </div>
-        {filteredLaunches.map((launch, x) => (
-          <div>
-            {launch.payloads.map((payload, y) => (
-              <div
-                className="discoverResults"
-                key={"launch" + x + "payload" + y}
-              >
-                <Card
-                  key={y}
-                  missionPatch={hasImg(launch)}
-                  missionPatchMob={hasImgMob(launch)}
-                  successText={isSuccessful(launch.launch_success)}
-                  flightNumber={launch.flight_number}
-                  payloadID={payload.payload_id}
-                  rocketName={launch.rocket.rocket_name}
-                  launchDate={moment(launch.launch_date_local)
-                    .utc()
-                    .format("Do MMMM YYYY")}
-                  launchTime={moment(launch.launch_date_local)
-                    .utc()
-                    .format("H:mm")}
-                  launchLocation={
-                    launchPads.filter(
-                      (launchpad) =>
-                        launch?.launch_site?.site_id === launchpad?.id
-                    )[0]?.full_name
-                  }
-                  buttonRedditCamp={hasRedditCampaign(launch)}
-                  buttonRedditLaunch={hasRedditLaunch(launch)}
-                  buttonRedditMed={hasRedditMedia(launch)}
-                  buttonPresskit={hasPresskit(launch)}
-                  buttonArticle={hasArticleLink(launch)}
-                  buttonVideo={hasVideoLink(launch)}
-                />
-              </div>
-            ))}
-          </div>
+      </div>
+      <div ref={launchRef}></div>
+      <Search
+        keywordChange={handleKeywordChange}
+        launchpadChange={handleLPChange}
+        launchpadList={launchPads.map((launchpad) => (
+          <option value={launchpad.full_name}>{launchpad.full_name}</option>
         ))}
-        <div className="backToTopContainer" onClick={() => handleClick()}>
-          <span>Back to top</span>
+        minYrChange={handleMinYearChange}
+        minYrValue={minYearValue}
+        maxYrChange={handleMaxYearChange}
+        maxYrValue={maxYearValue}
+        years={yearList.map((year) => (
+          <option value={year.minvalue}>{year.name}</option>
+        ))}
+        apply={handleApply}
+      />
+      <div className="noOfMissionsContainer bodytext">
+        <span>Showing {noOfMissions} Missions</span>
+      </div>
+      {filteredLaunches.map((launch, x) => (
+        <div>
+          {launch.payloads.map((payload, y) => (
+            <div className="discoverResults" key={"launch" + x + "payload" + y}>
+              <Card
+                key={y}
+                missionPatch={hasImg(launch)}
+                missionPatchMob={hasImgMob(launch)}
+                successText={isSuccessful(launch.launch_success)}
+                flightNumber={launch.flight_number}
+                payloadID={payload.payload_id}
+                rocketName={launch.rocket.rocket_name}
+                launchDate={moment(launch.launch_date_local)
+                  .utc()
+                  .format("Do MMMM YYYY")}
+                launchTime={moment(launch.launch_date_local)
+                  .utc()
+                  .format("H:mm")}
+                launchLocation={
+                  launchPads.filter(
+                    (launchpad) =>
+                      launch?.launch_site?.site_id === launchpad?.id
+                  )[0]?.full_name
+                }
+                buttonRedditCamp={hasRedditCampaign(launch)}
+                buttonRedditLaunch={hasRedditLaunch(launch)}
+                buttonRedditMed={hasRedditMedia(launch)}
+                buttonPresskit={hasPresskit(launch)}
+                buttonArticle={hasArticleLink(launch)}
+                buttonVideo={hasVideoLink(launch)}
+              />
+            </div>
+          ))}
         </div>
+      ))}
+      <div className="backToTopContainer">
+        <span onClick={() => handleClick(launchRef)}>Back to top</span>
       </div>
     </>
   );
