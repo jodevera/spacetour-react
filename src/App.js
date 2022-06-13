@@ -10,6 +10,7 @@ import Destination from "./components/Pages/Destination";
 import Crew from "./components/Pages/Crew";
 import Discover from "./components/Pages/Discover";
 import Technology from "./components/Pages/Technology";
+import Admin from "./components/Pages/Admin";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/crew" element={<Crew />} />
           <Route path="/technology" element={<Technology />} />
           <Route path="/discover" element={<Discover />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
     </Router>
